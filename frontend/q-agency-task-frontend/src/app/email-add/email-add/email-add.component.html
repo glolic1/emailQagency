@@ -1,0 +1,39 @@
+<form [formGroup]="fg" (ngSubmit)="addEmail()">
+    <div class="form">
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [formControl]="emailFrom">
+            <label for="float-input">Email from:</label>
+        </span>
+
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [formControl]="emailTo">
+            <label for="float-input">Email to:</label>
+        </span>
+
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [formControl]="emailCC">
+            <label for="float-input">CC:</label>
+        </span>
+
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [formControl]="emailSubject">
+            <label for="float-input">Email subject:</label>
+        </span>
+
+        <span class="p-float-label">
+            <textarea rows="5" cols="30" pInputTextarea [formControl]="emailContent"></textarea>
+            <label for="float-input">Email content:</label>
+        </span>
+
+        <span class="p-float-label">
+            <p-dropdown [options]="importanceLevels" optionLabel="importance1" [formControl]="importanceId" optionValue = "id"
+                placeholder="Select importance level" [showClear]="true"></p-dropdown>
+            <label for="float-input">Importance level:</label>
+        </span>
+
+        <p-button type="submit" label="Send"></p-button>
+        <button pButton pRipple type="button" label="Cancel" class="p-button-danger" (click)="cancel($event)"></button>
+        <p-toast></p-toast>
+        <p-confirmPopup></p-confirmPopup>
+    </div>
+</form>

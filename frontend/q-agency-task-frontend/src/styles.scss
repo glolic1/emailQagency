@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.p-inputtext {
+    display: block;
+    margin-bottom: .5rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.p-tabmenu {
+    margin-bottom: 50px;
+}

@@ -1,0 +1,22 @@
+<p-table [value]="emails">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Email from</th>
+            <th>Email to</th>
+            <th>Email subject</th>
+            <th>Email content</th>
+            <th>Email CC</th>
+            <th>Importance</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-email>
+        <tr>
+            <td>{{email.emailFrom}}</td>
+            <td>{{email.emailTo}}</td>
+            <td>{{email.emailSubject}}</td>
+            <td>{{email.emailContent}}</td>
+            <td>{{email.emailCc}}</td>
+            <td>{{email.importance.importance1}}</td>
+        </tr>
+    </ng-template>
+</p-table>

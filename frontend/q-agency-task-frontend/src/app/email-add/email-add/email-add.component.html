@@ -1,35 +1,62 @@
 <form [formGroup]="fg" (ngSubmit)="addEmail()">
     <div class="form">
-        <span class="p-float-label">
-            <input id="float-input" type="text" pInputText [formControl]="emailFrom">
-            <label for="float-input">Email from:</label>
-        </span>
+        <div class="form-group">
+            <div *ngIf="submitted && this.fg.controls['emailFrom'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && this.fg.controls['emailFrom'].errors['required']">Email from is required!</div>
+                <div *ngIf="submitted && this.fg.controls['emailFrom'].errors['email']">Email from is not a valid email!</div>
+            </div>
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [formControl]="emailFrom">
+                <label for="float-input">Email from:</label>
+            </span>
+        </div>
 
-        <span class="p-float-label">
-            <input id="float-input" type="text" pInputText [formControl]="emailTo">
-            <label for="float-input">Email to:</label>
-        </span>
+        <div class="form-group">
+            <div *ngIf="submitted && this.fg.controls['emailTo'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && this.fg.controls['emailTo'].errors['required']">Email to is required!</div>
+                <div *ngIf="submitted && this.fg.controls['emailTo'].errors['email']">Email to is not a valid email!</div>
+            </div>
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [formControl]="emailTo">
+                <label for="float-input">Email to:</label>
+            </span>
+        </div>
 
-        <span class="p-float-label">
-            <input id="float-input" type="text" pInputText [formControl]="emailCC">
-            <label for="float-input">CC:</label>
-        </span>
+        <div class="form-group">
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [formControl]="emailCC">
+                <label for="float-input">CC:</label>
+            </span>
+        </div>
+        <div class="form-group">
+            <div *ngIf="submitted && this.fg.controls['emailSubject'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && this.fg.controls['emailSubject'].errors['required']">Email subject is required!</div>
+            </div>
+            <span class="p-float-label">
+                <input id="float-input" type="text" pInputText [formControl]="emailSubject">
+                <label for="float-input">Email subject:</label>
+            </span>
+        </div>
 
-        <span class="p-float-label">
-            <input id="float-input" type="text" pInputText [formControl]="emailSubject">
-            <label for="float-input">Email subject:</label>
-        </span>
-
-        <span class="p-float-label">
-            <textarea rows="5" cols="30" pInputTextarea [formControl]="emailContent"></textarea>
-            <label for="float-input">Email content:</label>
-        </span>
-
-        <span class="p-float-label">
-            <p-dropdown [options]="importanceLevels" optionLabel="importance1" [formControl]="importanceId" optionValue = "id"
-                placeholder="Select importance level" [showClear]="true"></p-dropdown>
-            <label for="float-input">Importance level:</label>
-        </span>
+        <div class="form-group">
+            <div *ngIf="submitted && this.fg.controls['emailContent'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && this.fg.controls['emailContent'].errors['required']">Email content is required!</div>
+            </div>
+            <span class="p-float-label">
+                <textarea rows="5" cols="30" pInputTextarea [formControl]="emailContent"></textarea>
+                <label for="float-input">Email content:</label>
+            </span>
+        </div>
+        <div class="form-group">
+            <div *ngIf="submitted && this.fg.controls['importanceId'].errors" class="invalid-feedback">
+                <div *ngIf="submitted && this.fg.controls['importanceId'].errors['required']">Importance evel is required!</div>
+            </div>
+            <span class="p-float-label">
+                <p-dropdown [options]="importanceLevels" optionLabel="importance1" [formControl]="importanceId"
+                    optionValue="id" placeholder="Select importance level" [showClear]="true"></p-dropdown>
+                <label for="float-input">Importance level:</label>
+            </span>
+        </div>
 
         <p-button type="submit" label="Send"></p-button>
         <button pButton pRipple type="button" label="Cancel" class="p-button-danger" (click)="cancel($event)"></button>

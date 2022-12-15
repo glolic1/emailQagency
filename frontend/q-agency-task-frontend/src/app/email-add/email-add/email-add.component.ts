@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Importance } from 'src/models/Importance';
 import { RestService } from 'src/services/rest.service';
@@ -11,12 +11,13 @@ import { RestService } from 'src/services/rest.service';
 })
 export class EmailAddComponent {
   public fg!: FormGroup;
-  public emailFrom = new FormControl('');
-  public emailTo = new FormControl('');
+  public submitted = false;
+  public emailFrom = new FormControl('', [Validators.required, Validators.email]);
+  public emailTo = new FormControl('', [Validators.required, Validators.email]);
   public emailCC = new FormControl('');
-  public emailSubject = new FormControl('');
-  public importanceId = new FormControl('');
-  public emailContent = new FormControl('');
+  public emailSubject = new FormControl('', [Validators.required]);
+  public importanceId = new FormControl('', [Validators.required]);
+  public emailContent = new FormControl('', [Validators.required]);
 
   public importanceLevels!: any;
 
@@ -40,9 +41,14 @@ export class EmailAddComponent {
   }
 
   public addEmail(): void {
-    this.restService.addEmail(this.fg.value).subscribe(val => {
-      this.messageService.add({severity:'success', summary: 'Success', detail: 'Successfully added email!'});
-    });
+    this.submitted = true;
+    if (this.fg.valid) {
+      this.restService.addEmail(this.fg.value).subscribe(val => {
+        this.messageService.add({severity:'success', summary: 'Success', detail: 'Successfully added email!'});
+      });
+    } else {
+      this.fg.markAllAsTouched();
+    }
   }
 
   public cancel(event: any): void {

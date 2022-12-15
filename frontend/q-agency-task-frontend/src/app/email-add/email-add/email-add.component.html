@@ -6,7 +6,7 @@
                 <div *ngIf="submitted && this.fg.controls['emailFrom'].errors['email']">Email from is not a valid email!</div>
             </div>
             <span class="p-float-label">
-                <input id="float-input" type="text" pInputText [formControl]="emailFrom">
+                <input id="float-input" type="email" pInputText [formControl]="emailFrom" email="true">
                 <label for="float-input">Email from:</label>
             </span>
         </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="form-group">
             <div *ngIf="submitted && this.fg.controls['importanceId'].errors" class="invalid-feedback">
-                <div *ngIf="submitted && this.fg.controls['importanceId'].errors['required']">Importance evel is required!</div>
+                <div *ngIf="submitted && this.fg.controls['importanceId'].errors['required']">Importance level is required!</div>
             </div>
             <span class="p-float-label">
                 <p-dropdown [options]="importanceLevels" optionLabel="importance1" [formControl]="importanceId"

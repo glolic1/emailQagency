@@ -21,12 +21,12 @@ export class EmailAddComponent {
 
   public importanceLevels!: any;
 
-  constructor(public restService: RestService, 
-    private confirmationService: ConfirmationService, 
+  constructor(public restService: RestService,
+    private confirmationService: ConfirmationService,
     private messageService: MessageService) { }
 
   public ngOnInit() {
-    this.fg = new FormGroup ({
+    this.fg = new FormGroup({
       emailFrom: this.emailFrom,
       emailTo: this.emailTo,
       emailCC: this.emailCC,
@@ -44,7 +44,7 @@ export class EmailAddComponent {
     this.submitted = true;
     if (this.fg.valid) {
       this.restService.addEmail(this.fg.value).subscribe(val => {
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'Successfully added email!'});
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Successfully added email!' });
       });
     } else {
       this.fg.markAllAsTouched();
